@@ -49,14 +49,15 @@ class TaskApiController {
     function create($params = []) {
         $body = $this->getData();
 
-        $titulo = $body->titulo;
+        $nombre = $body->nombre;
         $descripcion = $body->descripcion;
-        $prioridad = $body->prioridad;
+        $genero = $body->id_genero;
+        $precio = $body->precio;
 
-        if (empty($titulo) || empty($prioridad)) {
+        if (empty($nombre) || empty($descripcion) || empty($precio) || empty($genero)) {
             $this->view->response("Complete los datos", 400);
         } else {
-            $id = $this->model->insertTask($titulo, $descripcion, $prioridad);
+            $id = $this->model->insertTask($nombre, $descripcion, $genero, $precio);
 
             // en una API REST es buena práctica es devolver el recurso creado
             $tarea = $this->model->getTask($id);
@@ -71,10 +72,11 @@ class TaskApiController {
 
         if($tarea) {
             $body = $this->getData();
-            $titulo = $body->titulo;
+            $nombre = $body->nombre;
             $descripcion = $body->descripcion;
-            $prioridad = $body->prioridad;
-            $this->model->updateTaskData($id, $titulo, $descripcion, $prioridad);
+            $genero = $body->id_genero;
+            $precio = $body->precio;
+            $this->model->updateTaskData($id, $descripcion, $nombre,$genero, $precio);
 
             $this->view->response('La tarea con id='.$id.' ha sido modificada.', 200);
         } else {

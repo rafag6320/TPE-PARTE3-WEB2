@@ -17,7 +17,7 @@ class TaskModel {
     }
 
     function getTask($id) {
-        $query = $this->db->prepare('SELECT * FROM tareas WHERE id = ?');
+        $query = $this->db->prepare('SELECT * FROM productos WHERE id = ?');
         $query->execute([$id]);
 
         // $task es una tarea sola
@@ -29,26 +29,20 @@ class TaskModel {
     /**
      * Inserta la tarea en la base de datos
      */
-    function insertTask($title, $description, $priority) {
-        $query = $this->db->prepare('INSERT INTO tareas (titulo, descripcion, prioridad) VALUES(?,?,?)');
-        $query->execute([$title, $description, $priority]);
+    function insertTask($nombre, $descripcion, $genero, $precio) {
+        $query = $this->db->prepare('INSERT INTO productos (nombre, descripcion, id_genero, precio) VALUES(?,?,?,?)');
+        $query->execute([$nombre, $descripcion, $genero, $precio]);
 
         return $this->db->lastInsertId();
     }
     
     function deleteTask($id) {
-        $query = $this->db->prepare('DELETE FROM tareas WHERE id = ?');
+        $query = $this->db->prepare('DELETE FROM productos WHERE id = ?');
         $query->execute([$id]);
     }
-
-    function updateTask($id) {    
-        $query = $this->db->prepare('UPDATE tareas SET finalizada = 1 WHERE id = ?');
-        $query->execute([$id]);
-    }
-
-    function updateTaskData($id, $titulo, $descripcion, $prioridad) {    
-        $query = $this->db->prepare('UPDATE tareas SET titulo = ?, descripcion = ?, prioridad = ? WHERE id = ?');
-        $query->execute([$titulo, $descripcion, $prioridad, $id]);
+    function updateTaskData($id, $descripcion, $nombre,$genero, $precio) {    
+        $query = $this->db->prepare('UPDATE productos SET nombre = ?, descripcion = ?, id_genero = ?, precio = ? WHERE id = ?');
+        $query->execute([$nombre, $descripcion, $genero, $precio, $id]);
     }
 }
 

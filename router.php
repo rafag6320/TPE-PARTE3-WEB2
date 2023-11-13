@@ -6,11 +6,11 @@
     $router = new Router();
 
     #                 endpoint      verbo     controller           método
-    $router->addRoute('tareas',     'GET',    'TaskApiController', 'get'   ); # TaskApiController->get($params)
-    $router->addRoute('tareas',     'POST',   'TaskApiController', 'create');
-    $router->addRoute('tareas/:ID', 'GET',    'TaskApiController', 'get'   );
-    $router->addRoute('tareas/:ID', 'PUT',    'TaskApiController', 'update');
-    $router->addRoute('tareas/:ID', 'DELETE', 'TaskApiController', 'delete');
+    $router->addRoute('productos',     'GET',    'TaskApiController', 'get'   ); # TaskApiController->get($params)
+    $router->addRoute('productos',     'POST',   'TaskApiController', 'create');
+    $router->addRoute('producto/:ID', 'GET',    'TaskApiController', 'get'   );
+    $router->addRoute('producto/:ID', 'PUT',    'TaskApiController', 'update');
+    $router->addRoute('producto/:ID', 'DELETE', 'TaskApiController', 'delete');
         
     #               del htaccess resource=(), verbo con el que llamo GET/POST/PUT/etc
     $router->route($_GET['resource']        , $_SERVER['REQUEST_METHOD']);
