@@ -74,7 +74,17 @@ class TaskApiController {
         }
 
     }
+    public function deleteTask($params = []) {
+        $task_id = $params[':ID'];
+        $task = $this->model->getTask($task_id);
 
+        if ($task) {
+            $this->model->deleteTask($task_id);
+            $this->view->response("Tarea id=$task_id eliminada con éxito", 200);
+        }
+        else 
+            $this->view->response("Task id=$task_id not found", 404);
+    }
     function update($params = []) {
         $id = $params[':ID'];
         $tarea = $this->model->getTask($id);
