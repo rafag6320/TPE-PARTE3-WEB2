@@ -19,7 +19,7 @@ class TaskApiController {
         if (empty($params)){
             $tareas = $this->model->getTasks();
             $this->view->response($tareas, 200);
-        } else {
+        } else {         
             $tarea = $this->model->getTask($params[':ID']);
             if(!empty($tarea)) {
                 if($params[':subrecurso']) {
@@ -46,6 +46,15 @@ class TaskApiController {
             }
         }
     }
+    function getCreciente(){
+        $tareas = $this->model->getCreciente();
+        $this->view->response($tareas, 200);
+    }
+    function getDecreciente(){
+        $tareas = $this->model->getDecreciente();
+        $this->view->response($tareas, 200);
+    }
+
     function create($params = []) {
         $body = $this->getData();
 

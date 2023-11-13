@@ -7,6 +7,8 @@
 
     #                 endpoint      verbo     controller           método
     $router->addRoute('productos',     'GET',    'TaskApiController', 'get'   ); # TaskApiController->get($params)
+    $router->addRoute('productoscreciente',     'GET',    'TaskApiController', 'getCreciente'   );
+    $router->addRoute('productosdecreciente',     'GET',    'TaskApiController', 'getDecreciente'   );
     $router->addRoute('productos',     'POST',   'TaskApiController', 'create');
     $router->addRoute('producto/:ID', 'GET',    'TaskApiController', 'get'   );
     $router->addRoute('producto/:ID', 'PUT',    'TaskApiController', 'update');

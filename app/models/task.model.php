@@ -25,6 +25,22 @@ class TaskModel {
 
         return $task;
     }
+    function getCreciente() {
+        $query = $this->db->prepare('SELECT * FROM productos ORDER BY nombre ASC');
+        $query->execute();
+
+        $tasks = $query->fetchAll(PDO::FETCH_OBJ);
+
+        return $tasks;
+    }
+    function getDecreciente() {
+        $query = $this->db->prepare('SELECT * FROM productos ORDER BY nombre DESC');
+        $query->execute();
+
+        $tasks = $query->fetchAll(PDO::FETCH_OBJ);
+
+        return $tasks;
+    }
 
     /**
      * Inserta la tarea en la base de datos
